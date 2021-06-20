@@ -41,18 +41,27 @@ def scan(req):
      cap.set(3,640) #3 - width
      cap.set(4,480) #4 - height
      camera = True
+     decodeData = []
+     decodeType = []
      while camera == True:
-          success, frame = cap.read()
+          sucess,frame = cap.read()
 
-     for code in decode(frame):
-        print(code.data.decode('utf-8'))
-        time.sleep(5)
+          for code in decode(frame):
+             print(code.data.decode('utf-8'))
+             decodeType = decodeType.append(code.type)
+             decodeData = decodeData.append(code.data.decode('utf-8'))
+             time.sleep(1)
 
-     cv2.imshow('Testing-code-scan', frame)
-     cv2.waitKey(1)
+          cv2.imshow('Testing-code-scan', frame)
+          
+          if cv2.waitKey(1) & 0xFF == 27:
+               break
+     cap.release()
+     cv2.destroyAllWindows()
+     print(decodeData)     
      responseData = {
-        'id': 4,
-        'name': 'Test Response'
+        'decodeType': decodeType,
+        'decodeData': decodeData,
      }
 
      return JsonResponse(responseData)
