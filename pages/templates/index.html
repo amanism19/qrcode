@@ -60,7 +60,7 @@
       type: 'GET',  
       success: function(data) {    
         $(".loader").hide();
-        $("#para").html(data);                
+        $("#para").html(JSON.stringify(data));                
         }  
       });  
     }
