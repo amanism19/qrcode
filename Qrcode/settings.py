@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # death
-    'pages.apps.PagesConfig'
+    'pages.apps.PagesConfig',
+    'api.apps.ApiConfig',
+    # 3rd party
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -41,8 +41,8 @@ def scan(req):
      cap.set(3,640) #3 - width
      cap.set(4,480) #4 - height
      camera = True
-     decodeData = []
-     decodeType = []
+     decodeData = ["monarch"]
+     decodeType = ["death"]
      while camera == True:
           sucess,frame = cap.read()
 
