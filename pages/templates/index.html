@@ -52,7 +52,9 @@
             <form method="post" class="form-inline" enctype="multipart/form-data">
               {% csrf_token %} 
               {{ form.as_p }}
-              <button type="submit" class="button">Upload</button>
+              <div class="text-center">
+                <button type="submit" name="upload1" class="btn btn-success">Upload</button>
+              </div>            
             </form>
           </div>
         </div>
@@ -66,7 +68,11 @@
         <div class="col-sm-3"></div>
         <div class="card col-sm-6" style="padding:20px;margin-top:10px;" >
           <div class="col-sm-12">
+          {% if flag1 %}
+          <h2 class="header2" style="padding-top:0">Failed To Convert</h2>
+          {% else %}
           <h2 class="header2" style="padding-top:0">Succesfully Converted</h2>
+          {% endif %}
           <h3><b>{{img_obj.title}}</b></h3>
           <br>
           <img src="{{ img_obj.image.url}}" alt="connect" style="max-height:300px">
@@ -86,6 +92,53 @@
     </div>
     {% endif %}
     <!--end data container-->
+    <!-- Advance Scanner-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="card col-sm-6" style="padding:20px;margin-top:10px;" >
+          <div class="col-sm-12">
+          <h2 class="header2" style="padding-top:0">Advance Qr Scanner</h2>
+          
+            <form method="post" class="form-inline" enctype="multipart/form-data">
+              {% csrf_token %} 
+              {{ form1.as_p }}
+              <div class="text-center">
+                <button type="submit" name="upload2" class="btn btn-success">Upload</button>
+              </div>            
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Advance Scanner-->
+    <!-- Advance data container-->
+    {% if img_obj1 %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="card col-sm-6" style="padding:20px;margin-top:10px;" >
+          <div class="col-sm-12">
+          <h2 class="header2" style="padding-top:0">Succesfully Converted Advance Code</h2>
+          <h3><b>{{img_obj1.title}}</b></h3>
+          <br>
+          <img src="{{ img_obj1.image.url}}" alt="connect" style="max-height:300px">
+          <br>
+          <h4>Converted code</h4>
+          <div style="font-size:16px;">
+            {% for decodedValue1,decodedType1 in overallDecoded1 %}
+              <b>Type Of Code:</b> {{ decodedType1 }}
+            <br>
+              <b>Value Contain:</b> {{ decodedValue1 }}
+            <br>
+            {% endfor %}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <!--end advance data container-->
     <!-- Scanner container-->
     <div class="container">
       <div class="row">
@@ -94,8 +147,8 @@
           <div class="col-sm-12">
             <h2 class="header2" style="padding-top:0">Open Scanner</h2>
           </div>  
-          <div class="wrapper">
-            <button onClick="openScanner()" class="button">Open Scanner</button>
+          <div class="text-center">
+            <button onClick="openScanner()" type="button" class="btn btn-success">Open Scanner</button>
           </div>     
         </div>
       </div>
@@ -143,5 +196,11 @@
       });  
     }
   </script>
+  <script>
+  var checkBlank = {{ overallDecoded }};
+  if (checkBlank == ''){
+
+  }
+  </script
   </body>
 </html>
