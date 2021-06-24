@@ -41,10 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # death
     'pages.apps.PagesConfig',
-    'api.apps.ApiConfig',
     # 3rd party
     'rest_framework',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.AllowAny',
+]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
